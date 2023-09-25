@@ -7,6 +7,7 @@
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
+    --card-hover:0 0% 95%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
@@ -30,6 +31,7 @@
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
+    --card-hover:240 10% 7%;
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
@@ -57,4 +59,60 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+@layer components{
+  nav.MainMenu{
+    display: flex;
+  }
+
+  nav.MainMenu ul {
+    display: flex;
+    gap: 1em;
+  }
+  nav.MainMenu li{
+    position: relative;
+  }
+  nav.MainMenu li>div{
+    display: none;
+    position: absolute;
+    
+    background: var(--card);
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: 2px 2px #ddd;
+
+
+  }
+  nav.MainMenu li:hover>div,
+  nav.MainMenu li:active>div
+  {
+    display: flex;
+  }
+
+  nav.MainMenu li .subMenu {
+    background-color:  hsl(var(--card));
+  }
+  nav.MainMenu li .subMenu .imgPlace{
+    width: 200px;
+  }
+  nav.MainMenu li .subMenu .imgPlace img{
+    height: 200px; 
+    border-radius: 1em;
+  }
+  nav.MainMenu li .subMenu .subCats{
+    display: flex;
+    flex-direction: column;
+  }
+  nav.MainMenu li .subMenu .subCats a{ 
+    padding: 2px .5em;
+    margin: 2px;
+    width: 7em;
+    border-radius: 2px;
+  }
+  nav.MainMenu li .subMenu .subCats a:hover{
+    background-color: hsl(var(--card-hover)); 
+    
+  }
+
+
 }

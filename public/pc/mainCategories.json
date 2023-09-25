@@ -1,0 +1,12 @@
+[{"name":"Women","slug":"women","subcategories":[{"name":"Dresses","slug":"dresses"},{"name":"Tops","slug":"tops"},{"name":"Bottoms","slug":"bottoms"}]},
+{"name":"Men","slug":"men","subcategories":[{"name":"Shirts","slug":"shirts"},{"name":"Pants","slug":"pants"},{"name":"Accessories","slug":"accessories"}]},
+{"name":"Mother & Child","slug":"mother-child","subcategories":[{"name":"Maternity","slug":"maternity"},{"name":"Kids","slug":"kids"},
+{"name":"Baby Gear","slug":"baby-gear"}]},
+{"name":"Home & Furniture","slug":"home-furniture","subcategories":[{"name":"Living Room","slug":"living-room"},{"name":"Bedroom","slug":"bedroom"},{"name":"Kitchen","slug":"kitchen"}]},
+{"name":"Rugs & Carpets","slug":"rugs-carpets","subcategories":[{"name":"Area Rugs","slug":"area-rugs"},{"name":"Carpet Runners","slug":"carpet-runners"},{"name":"Outdoor Rugs","slug":"outdoor-rugs"}]},
+{"name":"Cosmetics","slug":"cosmetics","subcategories":[{"name":"Makeup","slug":"makeup"},{"name":"Skincare","slug":"skincare"},{"name":"Fragrances","slug":"fragrances"}]},
+{"name":"Shoes & Bags","slug":"shoes-bags","subcategories":[{"name":"Shoes","slug":"shoes"},{"name":"Bags","slug":"bags"},{"name":"Accessories","slug":"accessories"}]},
+{"name":"Electronics","slug":"electronics","subcategories":[{"name":"Smartphones","slug":"smartphones"},{"name":"Laptops","slug":"laptops"},{"name":"Audio Devices","slug":"audio-devices"}]},
+{"name":"Sports & Outdoors","slug":"sports-outdoors","subcategories":[{"name":"Fitness","slug":"fitness"},{"name":"Camping","slug":"camping"},{"name":"Outdoor Gear","slug":"outdoor-gear"}]},
+{"name":"Best Sellers","slug":"best-sellers"},
+{"name":"Flash Sales","slug":"flash-sales"}]
