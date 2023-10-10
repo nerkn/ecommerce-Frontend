@@ -1,28 +1,36 @@
 
 import { useQuery } from "@tanstack/react-query"; 
- 
-import { MainCategories } from "src/types/site";
- 
+import { Link } from "react-router-dom";
+import { useShoppingCart } from "src/hooks/shoppingCart"; 
+import { Category } from "src/types/site";
 
 export function NavigationMenuDemo() {
-    let  { isLoading, error, data : mainCategories } = useQuery<MainCategories[]>({
+    let  { isLoading, error, data : mainCategories } = useQuery<Category[]>({
         queryKey:['mainCategories'], 
         queryFn:()=>fetch('/pc/mainCategories.tr.json').then(r=>r.json())
     })
-  return ( 
-    <nav className="MainMenu"><ul>
-        {mainCategories?.map(mc=>
-            <li key={mc.slug}>
-            <a href={'/c/'+mc.slug}>{mc.name}</a>
-            {mc.subcategories?<div className="subMenu">
-                <div className="imgPlace"> <img src={'/i/c/'+mc.slug+'.webp'} /></div>
-                <div className="subCats">
-                {mc.subcategories?.map(mcc=><a href={'/c/'+mc.slug+'/'+mcc.slug}>{mcc.name}</a>)}
-                </div>
-            </div>:''}
-            </li>)}
-        </ul>
-    </nav>  
-  )
+    const {cart} = useShoppingCart()
+    console.log('cart Menu', cart, mainCategories)
+    return ( 
+        <nav className="MainMenu"><ul>
+            {mainCategories?.map(mc=>
+                <li key={mc.slug} >
+                <Link to={'/c/'+mc.slug}>{mc.name}</Link>
+                {mc.subcategories?<div className="subMenu">
+                    <div className="imgPlace"> <img src={'/i/c/'+mc.slug+'.webp'} /></div>
+                    <div className="subCats">
+                    {mc.subcategories?.map(mcc=><Link key={mcc.slug} to={'/c/'+mc.slug+'/'+mcc.slug}>{mcc.name}</Link>)}
+                    </div>
+                </div>:''}            
+                </li>)}
+                <li key={cart.length}>
+                    <a>Shopping Cart </a>
+                    <div className="subMenu">
+                        {cart.map(cartItem=><Link key={cartItem.id} to={'/p/'+cartItem.id}>{cartItem.name}</Link>)}
+                    </div>
+                </li>
+            </ul>
+        </nav>  
+    )
 }
  

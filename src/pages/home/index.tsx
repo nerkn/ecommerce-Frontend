@@ -1,9 +1,8 @@
-import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
+import { Helmet } from 'react-helmet' 
 import { Hero } from 'src/components/hero'
+import { t } from 'src/lib/utils'
 
-export default function Home() {
-  const { t } = useTranslation('translation')
+export default function Home() { 
   return (
     <>
       <Helmet>

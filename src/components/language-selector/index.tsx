@@ -1,10 +1,10 @@
-import { useTranslation } from 'react-i18next'
+/* import { useTranslation } from 'react-i18next'
 import { useCallback, useMemo } from 'react'
 import { Popover, PopoverArrow, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { cn } from 'src/lib/utils'
 import { LANGUAGES } from 'src/i18n/config'
 import { Languages, ChevronDown } from 'lucide-react'
-import i18next from 'i18next'
+ import i18next from 'i18next'
 
 const getLocaleDisplayName = (locale: string, displayLocale?: string) => {
   const displayName = new Intl.DisplayNames([displayLocale || locale], {
@@ -13,7 +13,7 @@ const getLocaleDisplayName = (locale: string, displayLocale?: string) => {
   return displayName.charAt(0).toLocaleUpperCase() + displayName.slice(1)
 }
 
-const LanguageSelector = () => {
+const LanguageSelectorSil = () => {
   const { i18n } = useTranslation()
 
   const localesAndNames = useMemo(() => {
@@ -59,5 +59,6 @@ const LanguageSelector = () => {
     </div>
   )
 }
-
+*/
+const LanguageSelector = ''
 export { LanguageSelector }

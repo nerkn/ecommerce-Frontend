@@ -59,6 +59,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  a{
+    cursor: pointer;
+  }
 }
 @layer components{
   nav.MainMenu{
@@ -113,6 +116,29 @@
     background-color: hsl(var(--card-hover)); 
     
   }
-
-
+  .button{
+    @apply p-4 border rounded-md block;
+  }
+  .button:hover{
+    background-color: hsl(var(--accent));
+  }
+  .form>input{
+    @apply p-4 border rounded-md ;
+  }
+  .form label{
+    @apply block;
+  }
+  .w32trpr4{
+    @apply w-32 text-right pr-4 font-bold;
+  }
+  .ProductPage .Rating{
+    display: flex;
+    gap: .5em;
+  }
+  .ProductPage .Rating a{
+    @apply w-12 h-12 rounded-md border flex;
+    
+    align-items: center;
+    justify-content: center;
+  }
 }

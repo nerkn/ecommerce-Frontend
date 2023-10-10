@@ -4,8 +4,9 @@ import svgr from 'vite-plugin-svgr'
 import path from 'path'
 
 // https://vitejs.dev/config/
+/** @type {import('vite').UserConfig} */
 export default defineConfig({
-  base: './',
+  base: '/',
   plugins: [
     svgr({
       exportAsDefault: true,
@@ -14,7 +15,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      src: path.resolve(__dirname, './src'),
+      src: path.resolve(__dirname, '/src'),
     },
   },
   css: {
@@ -26,6 +27,14 @@ export default defineConfig({
   },
   server: {
     host: true,
+    port: 3053,
+		proxy: { 
+		  '/api': 'http://backend:3000',
+		  '/api2': 'http://backend:3000',
+		  '/admin': 'http://backoffice:3300',
+		},
+  },
+  preview: {
     port: 3053,
   },
 })

@@ -1,13 +1,37 @@
-import React from 'react'
-import { createHashRouter, RouteObject } from 'react-router-dom'
+import { createBrowserRouter, createHashRouter, RouteObject } from 'react-router-dom'
 import ErrorPage from './components/error-page'
 import { getDefaultLayout } from './components/layout'
 import HomePage from './pages/home'
+import CategoryPage from './pages/CategoryPage'
+import AdminProduct from './pages/admin/product'
+import AdminAliExpress from './pages/admin/aliExpress'
+import AdminCategory from './pages/admin/Category'
+import ProductPage from './pages/ProductPage'
 
 export const routerObjects: RouteObject[] = [
   {
-    path: '/',
-    Component: HomePage,
+    path: '/',                          Component: HomePage,  },
+  {
+    path: '/c/:slug',                   Component: CategoryPage,  },
+  {
+    path: '/c/:ignore/:slug',           Component: CategoryPage,  },
+  {
+    path: '/p/:pageid',                 Component: ProductPage,  },
+  {
+    path: '/p/:slugCategory/:pageid',   Component: ProductPage,  },
+  {
+    path: '/admin/product',             Component: AdminProduct,  },
+  {
+    path: '/admin/product',
+    Component: AdminProduct,
+  },
+  {
+    path: '/admin/aliExpress',
+    Component: AdminAliExpress,
+  },
+  {
+    path: '/admin/category',
+    Component: AdminCategory,
   },
 ]
 
@@ -24,5 +48,6 @@ export function createRouter(): ReturnType<typeof createHashRouter> {
       ErrorBoundary: ErrorPage,
     }
   })
-  return createHashRouter(routeWrappers)
+  return createBrowserRouter(routeWrappers)
+  //return createHashRouter(routeWrappers)
 }
