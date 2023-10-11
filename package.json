@@ -1,5 +1,5 @@
 {
-  "name": "vite-react-tailwind-starter",
+  "name": "ecommerce-Frontend",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -27,7 +27,8 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.10.0",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^4.4.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.5.1",

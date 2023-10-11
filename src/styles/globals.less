@@ -62,6 +62,10 @@
   a{
     cursor: pointer;
   }
+  h1{ font-size: 2em;}
+  h2{ font-size: 1.7em;}
+  h3{ font-size: 1.5em;}
+  h4{ font-size: 1.3em;}
 }
 @layer components{
   nav.MainMenu{
@@ -140,5 +144,17 @@
     
     align-items: center;
     justify-content: center;
+  }
+  .card{
+    padding-top: 1.5em;
+    margin-bottom: .5em;
+
+    & h2{ font-weight: bold;
+      border-bottom: 1px solid hsl(var(--accent));
+      margin-bottom: 1em;
+      padding: 0 0 .5em 1em;
+    }
+
+
   }
 }
