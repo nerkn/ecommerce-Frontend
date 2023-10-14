@@ -60,3 +60,18 @@ product_price	:number
 alldump	:string
 dateModified : Date
 }
+export type User ={
+    id:number,
+    name:string,
+    email:string,
+    password?:string
+}
+export type UserAddress = {
+    id:number,
+    user?:number,
+    title:string,
+    city:string,
+    address:string,
+    detail:string,
+    orderby:number
+}

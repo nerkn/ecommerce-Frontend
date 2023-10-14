@@ -1,26 +1,22 @@
 import { createBrowserRouter, createHashRouter, RouteObject } from 'react-router-dom'
 import ErrorPage from './components/error-page'
 import { getDefaultLayout } from './components/layout'
-import HomePage from './pages/home'
+import HomePage from './pages/HomePage'
 import CategoryPage from './pages/CategoryPage'
 import AdminProduct from './pages/admin/product'
 import AdminAliExpress from './pages/admin/aliExpress'
 import AdminCategory from './pages/admin/Category'
 import ProductPage from './pages/ProductPage'
+import CartPage from './pages/user/Cart'
 
 export const routerObjects: RouteObject[] = [
-  {
-    path: '/',                          Component: HomePage,  },
-  {
-    path: '/c/:slug',                   Component: CategoryPage,  },
-  {
-    path: '/c/:ignore/:slug',           Component: CategoryPage,  },
-  {
-    path: '/p/:pageid',                 Component: ProductPage,  },
-  {
-    path: '/p/:slugCategory/:pageid',   Component: ProductPage,  },
-  {
-    path: '/admin/product',             Component: AdminProduct,  },
+  {path: '/',                          Component: HomePage,  },
+  {path: '/c/:slug',                   Component: CategoryPage,  },
+  {path: '/c/:ignore/:slug',           Component: CategoryPage,  },
+  {path: '/p/:pageid',                 Component: ProductPage,  },
+  {path: '/p/:slugCategory/:pageid',   Component: ProductPage,  },
+  {path: '/user/Cart',                 Component: CartPage,  },
+  {path: '/admin/product',             Component: AdminProduct,  },
   {
     path: '/admin/product',
     Component: AdminProduct,
