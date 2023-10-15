@@ -8,7 +8,7 @@ export function fetchX(table:string, { query, data, method='get', returnValueOnl
     query?:string,
     returnValueOnly?:true|false
 }={}){
-    console.log('fetchX', query)
+    console.log('fetchX', table, query)
     return fetch(`/api/v1/${table}`,{
         method:method,
         body:((method !='get' ) && data)?(
