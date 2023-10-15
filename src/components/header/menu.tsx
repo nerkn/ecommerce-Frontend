@@ -4,13 +4,12 @@ import { Link } from "react-router-dom";
 import { useShoppingCart } from "src/hooks/shoppingCart"; 
 import { Category } from "src/types/site";
 
-export function NavigationMenuDemo() {
+export function MainCategoriesMenu() {
     let  { isLoading, error, data : mainCategories } = useQuery<Category[]>({
         queryKey:['mainCategories'], 
         queryFn:()=>fetch('/pc/mainCategories.tr.json').then(r=>r.json())
     })
-    const {cart} = useShoppingCart()
-    console.log('cart Menu', cart, mainCategories)
+    const {cart} = useShoppingCart() 
     return ( 
         <nav className="MainMenu"><ul>
             {mainCategories?.map(mc=>
