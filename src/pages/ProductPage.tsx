@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import { Helmet } from 'react-helmet' 
 import { useParams } from 'react-router-dom';  
-import { Stars } from 'src/components/stars';
-import { useShoppingCart } from 'src/hooks/shoppingCart';
+import { Stars } from 'src/components/stars'; 
+import { useCart } from 'src/hooks/useCart';
 import { ApiReturn, Category, Images, Product, ProductCategories, ProductWithProperties } from 'src/types/site';
 
 
@@ -11,7 +11,7 @@ import { ApiReturn, Category, Images, Product, ProductCategories, ProductWithPro
 
 export default function ProductPage() { 
   let { pageid:pageidOr } = useParams();
-  let { cartAdd, cartIncludes, cartRemove } = useShoppingCart()
+  let { add:cartAdd, includes:cartIncludes, remove:cartRemove } = useCart()
   const imageMain = useRef<HTMLImageElement>(null)
   let pageid = parseInt(pageidOr||'')||0
   let [category,categorySet] = useState<Category>();

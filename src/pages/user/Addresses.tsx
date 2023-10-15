@@ -15,10 +15,9 @@ export function Addresses(
     function getAddresses(userid:number){
         fetchX('useraddress?where=user,eq,'+userid).then(r=>addressesSet(r))
     }
-    function onChange4Selected(item:keyof UserAddress, value:string){
+    function onChange4Selected(item: keyof UserAddress, value:string){
         /*@ts-ignore  */
-        console.log(item, value, selected, noAddress)
-        selected[item] = value
+        selected[item]  = value
         selectedSet({...selected})
     }
     useEffect(()=>{

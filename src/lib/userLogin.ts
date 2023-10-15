@@ -1,5 +1,4 @@
-import { error } from "console";
-import { User, UserAddress } from "src/types/site";
+import { FormEventds, User, UserAddress } from "src/types/site";
 import { create } from "zustand";
 import { persist } from 'zustand/middleware'
 
@@ -7,6 +6,7 @@ type userStoreType = {
     user : User|null,
     addresses: UserAddress[],
     login:(email:string, password:string)=>void,
+    LoginFormSubmit:(e:FormEventds)=>void,
     logout:()=>void,
     error: string[]
 }
@@ -44,8 +44,14 @@ export const  userStore= create<userStoreType>()(
                     }
                 })
         },
+        LoginFormSubmit:(e)=>{
+            e.preventDefault();
+            get().login(
+                e.target.elements.email.value, 
+                e.target.elements.password.value)
+        },
         logout:()=>{
-            set({user:NoUser})
+            set({user:{...NoUser}})
         },
         error:[]
     }),{

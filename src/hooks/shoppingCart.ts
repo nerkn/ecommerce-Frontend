@@ -3,7 +3,7 @@ import useLocalStorageState from "./use-localstorage-state";
 import { MouseEventHandler, SyntheticEvent } from "react";
 
 type CartProduct = Product & {quantity:number}
-
+let  DanglingItems:CartProduct[] = [] 
 export function useShoppingCart(){
     const [cart, cartSet] =  useLocalStorageState<CartProduct[]>('shoppingCart', [])
     function cartAdd(product:Product, quantity=1){
@@ -14,6 +14,7 @@ export function useShoppingCart(){
             }else{
                 cartItems.push({...product, quantity})
             }
+            DanglingItems = cartItems
             return [...cartItems]
         } )
     }
@@ -30,15 +31,16 @@ export function useShoppingCart(){
     }
     function cartRemoveFromLink(cartItem:CartProduct){
         return (e:MouseEventHandler<HTMLAnchorElement>)=>{
-            e.stopPropagation();
+            //e.stopPropagation();
             cartRemove(cartItem.id)
         }
-
-
+    }
+    function cartCount(){
+        return cart.length
     }
     function cartIncludes(id:number){
         return cart.findIndex(cartItem=>cartItem.id==id)>-1
     }
-    console.log('carts', cart)
-    return {cart, cartAdd, cartRemove, cartIncludes, cartQuantityChange,  cartRemoveFromLink}
+    console.log('useShoppingCart, carts', cart)
+    return {cart, cartAdd, cartRemove, cartIncludes, cartQuantityChange,  cartRemoveFromLink, cartCount}
 }
