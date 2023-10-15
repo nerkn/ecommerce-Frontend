@@ -154,7 +154,137 @@
       margin-bottom: 1em;
       padding: 0 0 .5em 1em;
     }
-
+  }
+  .HomePage .Categories {
+    @apply grid grid-cols-5;
+    & .svgPlace{
+      fill: #666;
+      border: 1px solid #f99;
+      border-radius: .5em;
+      padding: .5em;
+      background: #ffe;
+    }
+      
+      > :nth-child(1){
+        border: 1px solid #d33;
+        background: #fee;
+      }
+      > :nth-child(2){
+        border: 1px solid #0fd;
+        background: #efe;
+      }
+       :nth-child(3){
+        border: 1px solid #aaaaf8;
+        background: #eef;
+      }
+       :nth-child(4){
+        border: 1px solid #ff82ff;
+        background: #fef;
+      }
+       :nth-child(5){
+        border: 1px solid #8b8b01;
+        background: #ffd;
+      }
+    & a:hover{      
+      transform: scale(1.05);
+    }
+  }
+  .cartMenu{    
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    padding: 1em;
+    margin-left:-5em ;
+    & > .cartItem{
+      width: 20em;
+      border: 1px solid #ffdeff;
+      margin-bottom: 1em;
+      padding: 2px 9px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    & .name{
+      text-overflow: ellipsis;
+      overflow: hidden; 
+      white-space: nowrap;
+      width: 90%;
+    }
+    & .price{
+      flex-grow: 1;
+      color: #d66;
+    }
+    & .remove{
+      color:#d33;
+      font-size: 10px;
+      :hover{
+        color: #900 ;
+      }
+    }
+    & .cartLink{
+      border: 1px solid;
+      width: 8em;
+      text-align: center;
+      padding: .2em;
+    }
 
   }
+  .CartPage{
+    & .products{
+      & .oneCartItem{
+        display: grid;
+        grid-template-columns: 3fr 3fr 1fr 1fr 1fr ; 
+        & .image img{
+          border-radius: .5em;
+          padding: 0 2em; 
+          width: 20em;
+        }
+        & .name{}
+        & .price{
+          font-size: large; 
+          text-align: right;
+          }
+        & .price::after {
+          content: "₺";
+        }
+        & .quantity{
+          text-align: right; }
+        & .quantity input{ 
+            width: 5em;
+            border: 1px solid hsl(var(--accent));
+            
+          text-align: right;
+        }
+        & .lineTotal{
+          text-align: right;}
+      }
+    }
+  }
+  .Addresses{
+    & .formPlace{
+    padding:1em 2em;
+    border: 1px solid #aae;
+    border-radius: .5em;
+    /*margin: 0 2em 2em 2em; */
+    }
+    & .form{
+    gap: .5em;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 2fr 5fr;}
+    & .oneAddress{
+      border: 1px solid #aae;
+      border-radius: .5em;
+      margin: 1em 0;
+      padding: 1em;  
+      display: flex; 
+      flex-direction: column;
+    }
+    & .oneAddress.selected {
+      background-color: hsl(var(--accent)) }
+    & .oneAddress .title{ font-size: 1.5em;  text-align: center;}
+    & .oneAddress .city{}
+    & .oneAddress .address{font-weight: bold;}
+    & .oneAddress .detail{}
+  }
+   
 }

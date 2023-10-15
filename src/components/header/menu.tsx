@@ -1,7 +1,6 @@
 
 import { useQuery } from "@tanstack/react-query"; 
 import { Link } from "react-router-dom";
-import { useShoppingCart } from "src/hooks/shoppingCart"; 
 import { Category } from "src/types/site";
 
 export function MainCategoriesMenu() {
@@ -9,7 +8,6 @@ export function MainCategoriesMenu() {
         queryKey:['mainCategories'], 
         queryFn:()=>fetch('/pc/mainCategories.tr.json').then(r=>r.json())
     })
-    const {cart} = useShoppingCart() 
     return ( 
         <nav className="MainMenu"><ul>
             {mainCategories?.map(mc=>
@@ -22,12 +20,6 @@ export function MainCategoriesMenu() {
                     </div>
                 </div>:''}            
                 </li>)}
-                <li key={cart.length}>
-                    <a>Shopping Cart </a>
-                    <div className="subMenu">
-                        {cart.map(cartItem=><Link key={cartItem.id} to={'/p/'+cartItem.id}>{cartItem.name}</Link>)}
-                    </div>
-                </li>
             </ul>
         </nav>  
     )
