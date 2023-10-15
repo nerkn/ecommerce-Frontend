@@ -75,3 +75,11 @@ export type UserAddress = {
     detail:string,
     orderby:number
 }
+
+export type ProductCategories = {
+    id:number,
+    t1:ProductId,
+    t2:CategoryId
+    extra:string
+}
+export type N2n = ProductCategories | {app:'product', bin:'category'}
