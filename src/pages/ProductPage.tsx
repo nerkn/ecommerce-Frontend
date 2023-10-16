@@ -75,12 +75,12 @@ export default function ProductPage() {
             <CategoriesSiblings parent={pc} parentExclude={[0, 43]} /> 
             </>)}
       </div>
-      <div className="container flex items-start gap-8 px-4 md:px-6" 
+      <div className="container flex items-start flex-col lg:flex-row  gap-8 px-4 md:px-6" 
            >
-        <div className='w-[500px]' >
+        <div className='lg:w-[500px]' >
         <img
           alt={product?.name + 'Resmi'}
-          className="aspect-[1/1] object-cover object-center max-w-lg h-[800px]"
+          className="lg:aspect-[1/1] object-cover object-center max-w-lg w-full lg:h-[800px] "
           height="800px"
           src={product?.images[0].url}
           width="500px"
@@ -106,10 +106,8 @@ export default function ProductPage() {
           </div>
           {product?(
             cartIncludes(product.id)?
-              <a className='w-full p-6 ' onClick={()=>cartRemove(product?.id||0)}> On the list, Remove?</a>: 
-              <a className="w-full  p-6 rounded-md button " onClick={()=>cartAdd(product, 1)}>
-                Add to Cart
-              </a>
+              <a className='w-full p-6 rounded-md button' onClick={()=>cartRemove(product?.id||0)}> Sepette, çıkart?</a>: 
+              <a className="w-full  p-6 rounded-md button " onClick={()=>cartAdd(product, 1)}>Sepete ekle </a>
           ):''}
           <p className="text-xs text-zinc-500 dark:text-zinc-400 ">
             Fabric: 100% Cotton. Care: Machine wash cold, tumble dry low.

@@ -9,7 +9,7 @@ export function MainCategoriesMenu() {
         queryFn:()=>fetch('/pc/mainCategories.tr.json').then(r=>r.json())
     })
     return ( 
-        <nav className="MainMenu"><ul>
+        <nav className="MainMenu hidden lg:flex"><ul>
             {mainCategories?.map(mc=>
                 <li key={mc.slug} >
                 <Link to={'/c/'+mc.slug}>{mc.name}</Link>

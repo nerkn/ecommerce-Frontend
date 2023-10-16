@@ -14,7 +14,8 @@ type userStoreType = {
 const NoUser:User = {
     id:0,
     email:"-",
-    name:"-"
+    name: "-",
+    phone: ""
 }
 
 

@@ -1,6 +1,4 @@
-import React, { ReactNode } from 'react'
-import { LanguageSelector } from '../language-selector'
-import { Button } from '../ui/button' 
+import React, { ReactNode } from 'react' 
 import {  LucideShoppingCart, LucideUserCircle2 } from 'lucide-react'
 import { MainCategoriesMenu } from './menu'
 import { Link } from 'react-router-dom' 
@@ -21,7 +19,7 @@ export function Header(props: IProps) {
   const cart = useCart()  
   return (
     <>
-    <div className="fixed top-0 flex w-[1400px] items-center justify-between border bg-slate-50 bg-opacity-70 px-4 py-4 md:px-12 z-30 ">
+      <div className="fixed top-0 flex w-full 2xl:w-[1400px] items-center justify-between border bg-slate-50 bg-opacity-70 px-4 py-4 md:px-12 z-30 ">
       <Link to="/" className="text-xs md:text-base">
         Dükkanım
       </Link>

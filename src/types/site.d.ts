@@ -64,7 +64,8 @@ export type User ={
     id:number,
     name:string,
     email:string,
-    password?:string
+    password?: string,
+    phone?:string
 }
 export type UserAddress = {
     id:number,
@@ -82,4 +83,31 @@ export type ProductCategories = {
     t2:CategoryId
     extra:string
 }
-export type N2n = ProductCategories | {app:'product', bin:'category'}
+export type N2n = ProductCategories | { app: 'product', bin: 'category' }
+
+export type Orders = {
+    id	:number
+    user	:number
+    paymentMethod	:string
+    total	:number
+    discount	:number
+    paymentStatus	:string
+    address	:string
+    commentUser	:string
+    comment: string
+    cargo : string
+    status	:"provided"| "process" | "cargo" | "cancelled"	
+    createdAt	: Date
+    modifiedAt	: Date
+}
+
+export type OrderProducts = {
+    id	:number
+    order	:number
+    user	:number
+    title	:string
+    quantity	:number
+    options	:string
+    status	:"provided"| "cargo" | "delayed"| "sent" | "cancelled"
+
+}

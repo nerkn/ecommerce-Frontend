@@ -8,6 +8,7 @@ import AdminAliExpress from './pages/admin/aliExpress'
 import AdminCategory from './pages/admin/Category'
 import ProductPage from './pages/ProductPage'
 import CartPage from './pages/user/Cart'
+import UserPage from './pages/UserPage'
 
 export const routerObjects: RouteObject[] = [
   {path: '/',                          Component: HomePage,  },
@@ -15,6 +16,7 @@ export const routerObjects: RouteObject[] = [
   {path: '/c/:ignore/:slug',           Component: CategoryPage,  },
   {path: '/p/:pageid',                 Component: ProductPage,  },
   {path: '/p/:slugCategory/:pageid',   Component: ProductPage,  },
+  {path: '/user',                      Component: UserPage,  },
   {path: '/user/Cart',                 Component: CartPage,  },
   {path: '/admin/product',             Component: AdminProduct,  },
   {
