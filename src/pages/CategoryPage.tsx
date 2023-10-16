@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet' 
 import { useParams } from 'react-router-dom'; 
+import CategoriesSiblings from 'src/components/blocks/CategoriesSiblings';
 import Products from 'src/components/blocks/Products';
 import SubCategories from 'src/components/blocks/SubCategories';
 import { ApiReturn, Category, Product, ProductCategories } from 'src/types/site';
@@ -30,12 +31,12 @@ export default function CategoryPage() {
     <>
       <Helmet>
         <title>{category?.name}</title>
-      </Helmet>
-      <div>{slug}</div>
-      
-      <SubCategories parentSlug={category?.slug} parent={category?.id||0} />
-      <Products productIds={productCategories?.data.map(pc=>pc.t1)||[]} parentSlug={category?.slug||''} />
-      <div>{category?.name}</div>
+      </Helmet>      
+      <div className='flex justify-between pb-2'>
+      <SubCategories parentSlug={category?.slug} parent={category?.id || 0} />
+      <CategoriesSiblings parent={category?.id || 0} parentExclude={[0, 43]} />
+      </div>
+      <Products productIds={productCategories?.data.map(pc=>pc.t1)||[]} parentSlug={category?.slug||''} /> 
     </>
   )
 }

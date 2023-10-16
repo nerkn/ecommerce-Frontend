@@ -1,21 +1,25 @@
 import { useQuery } from '@tanstack/react-query';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet' 
 import { Link, useParams } from 'react-router-dom';  
+import CategoriesSiblings from 'src/components/blocks/CategoriesSiblings';
+import SubCategories from 'src/components/blocks/SubCategories';
 import { Stars } from 'src/components/stars'; 
 import { useCart } from 'src/hooks/useCart';
-import { fetchCatsByProduct } from 'src/lib/fetch/categories';
-import { ApiReturn, Category, Images, Product, ProductCategories, ProductWithProperties } from 'src/types/site';
+import { useCategory } from 'src/hooks/useCategory';
+import { fetchCatIdsByProduct, fetchCatsByProduct } from 'src/lib/fetch/categories';
+import { Category, Product, ProductWithProperties } from 'src/types/site';
 
 
 
 
 export default function ProductPage() { 
-  let { pageid:pageidOr } = useParams();
-  let { add:cartAdd, includes:cartIncludes, remove:cartRemove } = useCart()
   const imageMain = useRef<HTMLImageElement>(null)
-  let pageid = parseInt(pageidOr||'')||0
+  let categoryStore                        = useCategory();
   let [imageBG, imageBGSet]                = useState('#000')
+  let { pageid:pageidOr }                  = useParams(); 
+  let { add:cartAdd, includes:cartIncludes, remove:cartRemove } = useCart()
+  let pageid = parseInt(pageidOr||'')||0
   let { isLoading, error, data : product  } = useQuery<ProductWithProperties>( {
             queryKey:['product', pageid], 
             refetchOnWindowFocus: false,
@@ -34,9 +38,9 @@ export default function ProductPage() {
                           return product
                         })
         })
-  let  {data : productCategories  } = useQuery<Category[]>( {
+  let  {data : productCategories  } = useQuery<number[]>( {
       queryKey:['ProductCategories', product?.id||0 ], 
-      queryFn:()=>fetchCatsByProduct(product?.id||0),    
+      queryFn:()=>fetchCatIdsByProduct(product?.id||0),    
       enabled: !(!(product?.id)) ,
       refetchOnWindowFocus: false
   })
@@ -56,14 +60,20 @@ export default function ProductPage() {
       */
   }
   console.log('product', pageid, product, productCategories)
+  useEffect(()=>{
+    categoryStore.loadCategories()
+  },[]) 
   return (
     <>
       <Helmet>
         <title>{product?.name}</title>
       </Helmet> 
     <section className="ProductPage w-full  md:py-4 lg:py-4">
-      <div>
-      {productCategories?.map(pc=><div><Link to={"/c/"+pc.slug}>{pc.name}</Link> </div>)}
+      <div className='flex justify-between pb-2'>
+          {productCategories?.filter(pc => pc).map(pc => <> 
+            <SubCategories parent={pc} />
+            <CategoriesSiblings parent={pc} parentExclude={[0, 43]} /> 
+            </>)}
       </div>
       <div className="container flex items-start gap-8 px-4 md:px-6" 
            >
