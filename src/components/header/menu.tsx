@@ -1,13 +1,14 @@
 
 import { useQuery } from "@tanstack/react-query"; 
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Category } from "src/types/site";
 
 export function MainCategoriesMenu() {
-    let  { isLoading, error, data : mainCategories } = useQuery<Category[]>({
-        queryKey:['mainCategories'], 
-        queryFn:()=>fetch('/pc/mainCategories.tr.json').then(r=>r.json())
-    })
+    let [mainCategories, mainCategoriesSet] = useState<Category[]>([])
+    useEffect(() => {
+        fetch('/pc/mainCategories.tr.json').then(r=>r.json()).then(r=>mainCategoriesSet(r))
+    },[])
     return ( 
         <nav className="MainMenu hidden lg:flex"><ul>
             {mainCategories?.map(mc=>

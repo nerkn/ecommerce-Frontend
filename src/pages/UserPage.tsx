@@ -4,6 +4,7 @@ import { Addresses } from "./user/Addresses"
 import { useEffect, useState } from "react"
 import { noAddress } from "src/types/resources";
 import { fetchX } from "src/lib/fetchx";
+import { formSubmit } from "src/lib/utils";
 
 
 export default function UserPage(){
@@ -21,8 +22,7 @@ export default function UserPage(){
         fetchX('orders?where=user,eq,' + user?.id + '&orderby=id desc').
             then(r=>ordersSet(r))
     },[])
-    const onSubmit = (e:FormEventds)=>{
-        console.log('onsubmit icin', e)
+    const onSubmit = (e:FormEventds)=>{ 
         e.preventDefault()
         login(e.target.elements.email.value, 
              e.target.elements.password.value)
@@ -51,7 +51,7 @@ export default function UserPage(){
 
     return <div className="flex gap-2">
         <div className="flex-grow">
-        <form  className="form flex flex-col" >
+        <form  className="form flex flex-col" action="/api2/users" onSubmit={formSubmit()} >
             <input name="id" value={user.id} type="hidden" />
             <input name="phone" value={user.phone} type="tel" placeholder="Telefon" />
             <input type="submit" value="Güncelle" />

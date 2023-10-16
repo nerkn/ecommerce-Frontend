@@ -30,7 +30,7 @@ export function Header(props: IProps) {
           <Link to="/user">
             <LucideUserCircle2 />
           </Link>
-          <div className='subMenu -ml-20'>
+          <div className='subMenu -ml-20 p-4'>
               {user?.id?<div className='subCats'>
                   <Link to='/user' >{user.name}</Link>
                   <Link to='/user/Orders' >Siparislerim</Link>
