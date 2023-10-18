@@ -75,20 +75,20 @@ export default function ProductPage() {
             <CategoriesSiblings parent={pc} parentExclude={[0, 43]} /> 
             </>)}
       </div>
-      <div className="container flex items-start flex-col lg:flex-row  gap-8 px-4 md:px-6" 
+      <div className="container grid grid-cols-[500px_1fr] items-start flex-col lg:flex-row  gap-8 p-0" 
            >
         <div className='lg:w-[500px]' >
         <img
           alt={product?.name + 'Resmi'}
-          className="lg:aspect-[1/1] object-cover object-center max-w-lg w-full lg:h-[800px] "
-          height="800px"
-          src={product?.images[0].url}
-          width="500px"
+          className="lg:aspect-[1/1] object-cover object-center max-w-lg w-full lg:w-[800px] "
+          src={product?.images[0].url} 
           ref={imageMain}
           onLoad={e=>ImageOnload(e)}
         />
-        <div className='grid grid-cols-5 py-4 '>
-            {product?.images.map(i=><img src={i.url} className='w-20' onMouseOver={()=>imageMain?.current?imageMain.current.src=i.url:''} /> )}
+        <div className='smallImages  items-center '>
+              {product?.images.map(i => <div className='flex align-middle items-center rounded-sm overflow-hidden bg-slate-200'>
+                <img src={i.url} className='w-20' onMouseOver={() => imageMain?.current ? imageMain.current.src = i.url : ''} />
+              </div>)}
         </div>
         </div>
         <div className="space-y-6">

@@ -50,8 +50,10 @@ export function Header(props: IProps) {
 
           <li key={cart.cart.length}>
               <a><LucideShoppingCart /> </a>
-              <div className="subMenu">
-                  {cart.cart.map(cartItem=><Link key={cartItem.id} to={'/p/'+cartItem.id}>{cartItem.name}</Link>)}
+              <div className="subMenu flex-col -ml-32 w-64">
+                {cart.cart.map(cartItem => <div className='border p-2 my-1 round'>
+                  <Link key={cartItem.id} to={'/p/' + cartItem.id}>{cartItem.name}</Link>
+                  </div>)}
                   <a onClick={()=>console.log(cart.cart)}>Cart Count</a>
               </div>
           </li>
