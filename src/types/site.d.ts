@@ -111,3 +111,24 @@ export type OrderProducts = {
     status	:"provided"| "cargo" | "delayed"| "sent" | "cancelled"
 
 }
+
+export type BlogType = {
+    id:number,
+    title	:string
+    slug	:string	
+    short	:string	
+    long	:string	
+    createdAt	:string
+    updatedAd	:string
+    status :'active'| 'draft'| 'passive'
+}
+
+type BlogTypeId = number
+export type BlogCategoryType = {
+    id:number,
+    t1:BlogTypeId,
+    t2:CategoryId
+    extra: string,
+    app: 'blog',
+    bin: string
+}
