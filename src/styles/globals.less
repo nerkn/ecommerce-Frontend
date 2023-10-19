@@ -253,8 +253,11 @@
       & .oneCartItem{
         display: grid;
         grid-template-columns: 3fr 3fr 1fr 1fr 1fr ; 
-        & .image img{
+        & .image{
           border-radius: .5em;
+          overflow: hidden;
+        }
+        & .image img{
           padding: 0 2em; 
           width: 20em;
         }
