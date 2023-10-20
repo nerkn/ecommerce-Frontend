@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react'
 import { LoginPlace } from 'src/components/blocks/loginPlace'
 import { useShoppingCart } from 'src/hooks/shoppingCart'
-import { Images, Product, UserAddress } from 'src/types/site'
+import { Images, PaymentType, Product, UserAddress } from 'src/types/site'
 import { Addresses } from './Addresses'
 import { Payment } from './Payment'
 import { noAddress } from 'src/types/resources'
+import { error } from 'console'
+import { Button } from 'src/components/ui/button'
 
 export default function CartPage({}) {
   const [products, productsSet] = useState<Product[]>([])
   const [images, imagesSet] = useState<Images[]>([])
+  const [payment, paymentSet] = useState<PaymentType>({ paid: false, method: '' })
   const [address, addressSet] = useState<UserAddress>({ ...noAddress })
   const { cart, cartQuantityChange } = useShoppingCart()
+  function SaveOrder() {}
   useEffect(() => {
     if (!cart.length) return
     let pids = cart.map((p) => p.id)
@@ -21,7 +25,15 @@ export default function CartPage({}) {
       .then((r) => r.json())
       .then((r) => (r.error ? console.log('images yuklenmedi', r.data) : imagesSet(r.data)))
   }, [cart])
-
+  let lineTotal = [...document.querySelectorAll('.lineTotal')].reduce((t, l) => t + (parseFloat(l.innerHTML) || 0), 0)
+  function CartSubmissionReady() {
+    let errors = []
+    if (!payment.paid) errors.push('Ödeme yapmalısınız')
+    if (!address.id) errors.push('Adres kaydetmelisiniz')
+    if (lineTotal == 0) errors.push('Birşey aldınız mı?')
+    return errors
+  }
+  let errors = CartSubmissionReady()
   return (
     <div className="CartPage grid grid-cols-2">
       <div className="products">
@@ -62,16 +74,22 @@ export default function CartPage({}) {
         )}
         <div className="grandTotal">
           <div>Toplam ödenecek</div>
-          <div>
-            {[...document.querySelectorAll('.lineTotal')].reduce((t, l) => t + (parseFloat(l.innerHTML) || 0), 0)}
-          </div>
+          <div>{lineTotal}</div>
         </div>
       </div>
       <div>
         <LoginPlace />
         <Addresses externalSelectedAddressSet={addressSet} />
-        <Payment />
-        <a>Siparisi ver</a>
+        <Payment paymentSet={paymentSet} />
+        <div>
+          {errors.length ? (
+            errors.map((e) => <p>{e}</p>)
+          ) : (
+            <Button onClick={SaveOrder} className="button">
+              Siparisi ver
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   )

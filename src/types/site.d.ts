@@ -132,3 +132,7 @@ export type BlogCategoryType = {
     app: 'blog',
     bin: string
 }
+export type PaymentType = {
+    paid: boolean
+    method: string
+  }
