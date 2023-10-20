@@ -253,6 +253,7 @@
       & .oneCartItem{
         display: grid;
         grid-template-columns: 3fr 3fr 1fr 1fr 1fr ; 
+        gap: .2em;
         & .image{
           border-radius: .5em;
           overflow: hidden;
@@ -278,7 +279,12 @@
           text-align: right;
         }
         & .lineTotal{
-          text-align: right;}
+          padding-top: 2em;
+          text-align: right;
+        padding-right: .2em;}
+      }
+      & .lineTotal::after {
+        content: "₺";
       }
     }
   }
@@ -316,7 +322,8 @@
     margin-top: 1em;
     padding:1em 2em;
     border: 1px solid rgba(170, 238, 179, 0.637);
-    border-radius: .5em;}
+    border-radius: .5em;
+  }
 & dt{ font-weight: bold; margin-top: 1em}
 & dd{padding:  2em;  border: 1px solid rgba(170, 238, 179, 0.637) }
 & dd>a{
@@ -326,4 +333,12 @@
   width:200px;
   text-align: center;
 }
+}
+.CartPage .SavePlace{
+  margin-top: 1em;
+  padding:1em 2em;
+  border: 1px solid rgba(170, 238, 179, 0.637);
+  border-radius: .5em;
+  justify-items: right;
+
 }

@@ -10,7 +10,10 @@ export function fetchX(table:string, { query, data, method='get', returnValueOnl
 }={}){
     console.log('fetchX', table, query)
     return fetch(`/api/v1/${table}`,{
-        method:method,
+        method: method,
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+        },
         body:((method !='get' ) && data)?(
             typeof data =='string'?data:JSON.stringify(data)
         ):null,

@@ -1,4 +1,4 @@
-import { type } from "os"
+import { FormEvent } from "react"
 
 export type ApiReturn<T> = {
     msg:string,
@@ -16,7 +16,7 @@ export type FormEventds=FormEvent<HTMLFormElement> & {
 export type Category = {
     name:string,
     slug:string,
-    subcategories?:MainCategories[],
+    subcategories?:Category[],
     id:number,
     parent:number
 }
@@ -77,12 +77,6 @@ export type UserAddress = {
     orderby:number
 }
 
-export type ProductCategories = {
-    id:number,
-    t1:ProductId,
-    t2:CategoryId
-    extra:string
-}
 export type N2n = ProductCategories | { app: 'product', bin: 'category' }
 
 export type Orders = {
@@ -97,18 +91,17 @@ export type Orders = {
     comment: string
     cargo : string
     status	:"provided"| "process" | "cargo" | "cancelled"	
-    createdAt	: Date
-    modifiedAt	: Date
-}
-
+    createdAt	: string
+    modifiedAt	: string
+} 
 export type OrderProducts = {
     id	:number
-    order	:number
-    user	:number
-    title	:string
-    quantity	:number
+    order: number
+    product: number
+    quantity: number
+    price: number
     options	:string
-    status	:"provided"| "cargo" | "delayed"| "sent" | "cancelled"
+    status	:"provided"| "cargo" | "delayed"| "sent" | "cancelled" | "process"
 
 }
 

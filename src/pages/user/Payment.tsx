@@ -1,5 +1,5 @@
 import { Dispatch, useEffect, useState } from 'react'
-import { PaymentType } from 'src/types/site'
+import { PaymentType } from 'src/types/db'
 
 export function Payment({ paymentSet }: { paymentSet: Dispatch<React.SetStateAction<PaymentType>> }) {
   const [activePM, activePMSet] = useState(1)

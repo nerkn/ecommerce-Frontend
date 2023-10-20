@@ -1,4 +1,4 @@
-import { FormEventds, User, UserAddress } from "src/types/site";
+import { FormEventds, User, UserAddress } from "src/types/db";
 import { create } from "zustand";
 import { persist } from 'zustand/middleware'
 

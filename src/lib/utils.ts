@@ -1,5 +1,5 @@
 import { type ClassValue, clsx } from 'clsx'
-import { FormEventds } from 'src/types/site';
+import { FormEventds } from 'src/types/db';
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
