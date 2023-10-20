@@ -19,14 +19,15 @@ export default function CartPage({}) {
   const [address, addressSet] = useState<UserAddress>({ ...noAddress })
   //const { cart, cartQuantityChange, cartRemove } = useShoppingCart()
   const { cart, quantityChange, remove } = useCart()
+  let lineTotal = 0 // [...document.querySelectorAll('.lineTotal')].reduce((t, l) => t + (parseFloat(l.innerHTML) || 0), 0)
   function SaveOrder() {
     let orderData: Orders = {
       ...noOrders,
       address: address2str(address),
       paymentMethod: payment.method,
+      total: lineTotal,
     }
     fetchX('orders', { method: 'post', data: orderData }).then((r) => {
-      console.log('save edince', r)
       let orderLines: Array<OrderProducts> = cart
         .filter((c) => c.quantity)
         .map((c) => ({
@@ -41,7 +42,6 @@ export default function CartPage({}) {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(orderLines),
       }).then((r) => {
-        console.log(cart)
         cart.forEach((c) => {
           if (c.quantity) {
             remove(c.id)
@@ -63,7 +63,6 @@ export default function CartPage({}) {
       .then((r) => r.json())
       .then((r) => (r.error ? console.log('images yuklenmedi', r.data) : imagesSet(r.data)))
   }, [cart])
-  let lineTotal = 0 // [...document.querySelectorAll('.lineTotal')].reduce((t, l) => t + (parseFloat(l.innerHTML) || 0), 0)
   function CartSubmissionReady() {
     let errors = []
     if (!payment.paid) errors.push('Ödeme yapmalısınız')

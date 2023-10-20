@@ -1,32 +1,23 @@
 import { userStore } from 'src/lib/userLogin'
-import { FormEventds, Orders, UserAddress } from 'src/types/db'
+import { Orders, UserAddress } from 'src/types/db'
 import { Addresses } from './user/Addresses'
 import { useEffect, useState } from 'react'
 import { noAddress } from 'src/types/resources'
 import { fetchX } from 'src/lib/fetchx'
 import { formSubmit } from 'src/lib/utils'
+import { MyOrders } from './user/MyOrders'
 
 export default function UserPage() {
-  const { user, login, error } = userStore((s) => ({
+  const { user, error, LoginFormSubmit } = userStore((s) => ({
     user: s.user,
-    login: s.login,
+    LoginFormSubmit: s.LoginFormSubmit,
     error: s.error,
   }))
   const [address, addressesSet] = useState<UserAddress>(noAddress)
-  const [orders, ordersSet] = useState<Orders[]>([])
-  useEffect(() => {
-    if (!user?.id) return
-    fetchX('orders?where=user,eq,' + user?.id + '&orderby=id desc').then((r) => ordersSet(r))
-  }, [])
-  const onSubmit = (e: FormEventds) => {
-    e.preventDefault()
-    login(e.target.elements.email.value, e.target.elements.password.value)
-  }
-  console.log('orders', orders)
   if (!user?.id)
     return (
       <div className="flex">
-        <form className="bg-slate-300  " onSubmit={onSubmit}>
+        <form className="bg-slate-300  " onSubmit={LoginFormSubmit}>
           <h3>Giriş</h3>
           <input type="email" name="email" />
           <input type="password" name="password" />
@@ -36,7 +27,7 @@ export default function UserPage() {
           ))}
         </form>
 
-        <form className="bg-slate-300 " onSubmit={onSubmit}>
+        <form className="bg-slate-300 " onSubmit={LoginFormSubmit}>
           <h3>Kayıt</h3>
           <input type="email" name="email" placeholder="emaıl" />
           <input type="phone" name="phone" placeholder="Telefon" />
@@ -58,30 +49,7 @@ export default function UserPage() {
           <input name="phone" value={user.phone} type="tel" placeholder="Telefon" />
           <input type="submit" value="Güncelle" />
         </form>
-        <div className="flex flex-col">
-          <h3>Siparislerim</h3>
-          {orders.map((order) => (
-            <div className="w-full rounded  border p-4" key={order.id}>
-              <div>
-                <b>Girdiginiz Adres</b>
-                <div>{order.address}</div>
-              </div>
-              <div>
-                <b>Kargo Bilgisi</b>
-                <div>{order.cargo}</div>
-              </div>
-              <div className="flex justify-between">
-                <div>
-                  <b>Siparis Durumu</b>
-                  {order.status}
-                </div>
-                <div>
-                  <b>Toplam</b> {order.total}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <MyOrders user={user} />
       </div>
       <Addresses externalSelectedAddressSet={addressesSet} />
     </div>

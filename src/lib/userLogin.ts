@@ -2,11 +2,20 @@ import { FormEventds, User, UserAddress } from "src/types/db";
 import { create } from "zustand";
 import { persist } from 'zustand/middleware'
 
+type LoginFormSubmitFormEvents = FormEventds & {
+    target: {
+        elements: {
+            email: HTMLInputElement,
+            password:HTMLInputElement
+        }
+    }
+}
+
 type userStoreType = {
     user : User|null,
     addresses: UserAddress[],
     login:(email:string, password:string)=>void,
-    LoginFormSubmit:(e:FormEventds)=>void,
+    LoginFormSubmit:(e:LoginFormSubmitFormEvents)=>void,
     logout:()=>void,
     error: string[]
 }
