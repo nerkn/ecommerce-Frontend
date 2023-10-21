@@ -9,16 +9,19 @@ import AdminCategory from './pages/admin/Category'
 import ProductPage from './pages/ProductPage'
 import CartPage from './pages/user/Cart'
 import UserPage from './pages/UserPage'
+import { BlogPage } from './pages/BlogPage'
 
 export const routerObjects: RouteObject[] = [
-  {path: '/',                          Component: HomePage,  },
-  {path: '/c/:slug',                   Component: CategoryPage,  },
-  {path: '/c/:ignore/:slug',           Component: CategoryPage,  },
-  {path: '/p/:pageid',                 Component: ProductPage,  },
-  {path: '/p/:slugCategory/:pageid',   Component: ProductPage,  },
-  {path: '/user',                      Component: UserPage,  },
-  {path: '/user/Cart',                 Component: CartPage,  },
-  {path: '/admin/product',             Component: AdminProduct,  },
+  { path: '/', Component: HomePage },
+  { path: '/c/:slug', Component: CategoryPage },
+  { path: '/b/:slug', Component: BlogPage },
+  { path: '/b/:ignore/:slug', Component: BlogPage },
+  { path: '/c/:ignore/:slug', Component: CategoryPage },
+  { path: '/p/:pageid', Component: ProductPage },
+  { path: '/p/:slugCategory/:pageid', Component: ProductPage },
+  { path: '/user', Component: UserPage },
+  { path: '/user/Cart', Component: CartPage },
+  { path: '/admin/product', Component: AdminProduct },
   {
     path: '/admin/product',
     Component: AdminProduct,

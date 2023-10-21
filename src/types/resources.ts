@@ -1,6 +1,6 @@
 import translation from '../i18n/locales/en/translation.json'
 import notfound from '../i18n/locales/en/notfound.json'
-import { OrderProducts, Orders, UserAddress } from './db'
+import { BlogType, OrderProducts, Orders, UserAddress } from './db'
 import { newDate } from 'src/lib/newDate'
 
 const resources = {
@@ -42,4 +42,14 @@ export const noOrderProducts: OrderProducts = {
   user: 0,
   price: 0,
   product:0
+}
+export const noBlog: BlogType = {
+  id: 0,
+  title: '',
+  short: '',
+  long: '',
+  slug: '',
+  status: 'draft',
+  createdAt: newDate(),
+  updatedAd: newDate()
 }
