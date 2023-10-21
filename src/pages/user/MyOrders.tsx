@@ -14,7 +14,7 @@ export function MyOrders({ user }: { user: User }) {
   function OrderDetailsLoad(id: number) {
     return () => {
       selectedSet({ id, lines: [] })
-      fetchX('orderProducts?where=order,eq,' + id).then((r) => {
+      fetchX('orderProducts?where=order,eq,' + id).then((r: OrderProducts[]) => {
         selectedSet({ id, lines: r })
         let productIds = r.map((r) => r.product).join(',')
         if (productIds) fetchX('product?where=id,in,' + productIds).then((r) => productsSet(r))
