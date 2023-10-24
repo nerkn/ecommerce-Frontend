@@ -1,7 +1,7 @@
 import { Dispatch, useEffect, useState } from 'react'
-import { fetchX } from 'src/lib/fetchx'
-import { userStore } from 'src/lib/userLogin'
-import { formSubmit } from 'src/lib/utils'
+import { fetchX } from 'src/libs/fetchx'
+import { userStore } from 'src/libs/userLogin'
+import { formSubmit } from 'src/libs/utils'
 import { noAddress } from 'src/types/resources'
 import { UserAddress } from 'src/types/db'
 

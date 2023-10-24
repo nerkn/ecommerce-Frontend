@@ -1,10 +1,10 @@
-import { userStore } from 'src/lib/userLogin'
+import { userStore } from 'src/libs/userLogin'
 import { Orders, UserAddress } from 'src/types/db'
 import { Addresses } from './user/Addresses'
 import { useEffect, useState } from 'react'
 import { noAddress } from 'src/types/resources'
-import { fetchX } from 'src/lib/fetchx'
-import { formSubmit } from 'src/lib/utils'
+import { fetchX } from 'src/libs/fetchx'
+import { formSubmit } from 'src/libs/utils'
 import { MyOrders } from './user/MyOrders'
 
 export default function UserPage() {

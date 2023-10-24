@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchX } from 'src/lib/fetchx'
+import { fetchX } from 'src/libs/fetchx'
 import { OrderProducts, Orders, Product, User } from 'src/types/db'
 
 type selectedOrderAndLines = {

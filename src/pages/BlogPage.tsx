@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import snarkdown from 'snarkdown'
-import { fetchX } from 'src/lib/fetchx'
+import { fetchX } from 'src/libs/fetchx'
 import { BlogType } from 'src/types/db'
 import { noBlog } from 'src/types/resources'
 

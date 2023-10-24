@@ -9,7 +9,7 @@ export type ApiReturn<T> = {
 export type FormEventds=FormEvent<HTMLFormElement> & {
     target:HTMLElement&{
       action:string,
-      elements:HTMLInputElement[]
+      elements:HTMLInputElement[] &{[key:string]:HTMLInputElement}
     }
   }
 
@@ -90,7 +90,7 @@ export type Orders = {
     commentUser	:string
     comment: string
     cargo : string
-    status	:"provided"| "process" | "cargo" | "cancelled"	
+    status	:"provided"| "process" | "cargo" | "cancelled"  |"preparing"
     createdAt	: string
     modifiedAt	: string
 } 

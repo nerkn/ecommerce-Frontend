@@ -1,11 +1,10 @@
-import { Rocket, Globe2, Wrench, Zap } from 'lucide-react' 
+import { Rocket, Globe2, Wrench, Zap } from 'lucide-react'
 import { Button } from '../ui/button'
-import { t } from 'src/lib/utils'
+import { t } from 'src/libs/utils'
 
-export const Hero = () => { 
-
+export const Hero = () => {
   return (
-    <div className="flex min-h-screen bg-gradient-to-b from-white to-grey-100">
+    <div className="to-grey-100 flex min-h-screen bg-gradient-to-b from-white">
       <section className="w-full py-32 md:py-48">
         <div className="container px-4 md:px-6">
           <div className="grid items-center gap-6">

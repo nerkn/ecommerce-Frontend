@@ -7,7 +7,7 @@ import SubCategories from 'src/components/blocks/SubCategories'
 import { Stars } from 'src/components/stars'
 import { useCart } from 'src/hooks/useCart'
 import { useCategory } from 'src/hooks/useCategory'
-import { fetchCatIdsByProduct, fetchCatsByProduct } from 'src/lib/fetch/categories'
+import { fetchCatIdsByProduct, fetchCatsByProduct } from 'src/libs/fetch/categories'
 import { Category, Product, ProductWithProperties } from 'src/types/site'
 
 export default function ProductPage() {

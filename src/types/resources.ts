@@ -1,7 +1,7 @@
 import translation from '../i18n/locales/en/translation.json'
 import notfound from '../i18n/locales/en/notfound.json'
 import { BlogType, OrderProducts, Orders, UserAddress } from './db'
-import { newDate } from 'src/lib/newDate'
+import { newDate } from 'src/libs/newDate'
 
 const resources = {
   notfound,

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { LucideShoppingCart, LucideUserCircle2 } from 'lucide-react'
 import { MainCategoriesMenu } from './menu'
 import { Link } from 'react-router-dom'
-import { userStore } from 'src/lib/userLogin'
+import { userStore } from 'src/libs/userLogin'
 import { CartMenu } from './CartMenu'
 
 interface IProps {

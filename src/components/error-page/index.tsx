@@ -1,9 +1,9 @@
 import { Link, useRouteError } from 'react-router-dom'
 import { Button } from '../ui/button'
-import { t } from 'src/lib/utils'
+import { t } from 'src/libs/utils'
 
 export default function ErrorPage() {
-  const error = useRouteError() as any 
+  const error = useRouteError() as any
 
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center gap-4 text-left">

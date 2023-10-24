@@ -1,4 +1,4 @@
-import { fetchX } from "src/lib/fetchx" 
+import { fetchX } from "src/libs/fetchx" 
 import { Category } from "src/types/db"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
