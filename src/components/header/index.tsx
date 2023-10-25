@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { LucideShoppingCart, LucideUserCircle2 } from 'lucide-react'
 import { MainCategoriesMenu } from './menu'
-import { Link } from 'react-router-dom'
+import { Link } from 'wouter'
 import { userStore } from 'src/libs/userLogin'
 import { CartMenu } from './CartMenu'
 

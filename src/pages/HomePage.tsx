@@ -1,12 +1,18 @@
 import { Helmet } from 'react-helmet'
 import { ListOfCatBlock } from 'src/components/blocks/ListOfCatBlock'
 import { Hero } from 'src/components/blocks/hero'
-import { Footer } from 'src/components/footer'
-//import { Hero:Hero1 } from 'src/components/hero'
 import { t } from 'src/libs/utils'
 import { Categories } from './home/Categories'
+import { useEffect, useState } from 'react'
+import { homePageProductType } from 'src/types/db'
 
 export default function Home() {
+  const [homePageProducts, homePageProductsSet] = useState<homePageProductType[]>([])
+  useEffect(() => {
+    fetch('/api/homepage')
+      .then((r) => r.json())
+      .then((r) => homePageProductsSet(r.data))
+  }, [])
   return (
     <div className="HomePage">
       <Helmet>
@@ -14,8 +20,9 @@ export default function Home() {
       </Helmet>
       <Hero />
       <Categories />
-      <ListOfCatBlock catId={46} title="Çok Satanlar" />
-      <ListOfCatBlock catId={11} title="Yeni Ürünler" />
+
+      <ListOfCatBlock title="Çok Satanlar" products={homePageProducts?.filter((fpp) => fpp.n == 46)} />
+      <ListOfCatBlock title="Yeni Ürünler" products={homePageProducts?.filter((fpp) => fpp.n == 11)} />
     </div>
   )
 }

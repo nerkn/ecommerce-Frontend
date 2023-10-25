@@ -1,5 +1,5 @@
 import { LucideShoppingCart } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link } from 'wouter'
 import { useCart } from 'src/hooks/useCart'
 
 export function CartMenu() {

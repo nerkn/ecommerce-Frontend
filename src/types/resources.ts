@@ -1,22 +1,13 @@
-import translation from '../i18n/locales/en/translation.json'
-import notfound from '../i18n/locales/en/notfound.json'
 import { BlogType, OrderProducts, Orders, UserAddress } from './db'
 import { newDate } from 'src/libs/newDate'
 
-const resources = {
-  notfound,
-  translation,
-} as const
-
-export default resources
-
-export const noAddress:UserAddress = {
-  id:0,
-  title:'Başlık',
-  address:'',
-  city:'Antalya',
-  detail:'',
-  orderby:99
+export const noAddress: UserAddress = {
+  id: 0,
+  title: 'Başlık',
+  address: '',
+  city: 'Antalya',
+  detail: '',
+  orderby: 99,
 }
 export const noOrders: Orders = {
   id: 0,
@@ -29,19 +20,18 @@ export const noOrders: Orders = {
   createdAt: newDate(),
   modifiedAt: newDate(),
   paymentMethod: '',
-  paymentStatus:'',
+  paymentStatus: '',
   cargo: '',
-  comment:'',
+  comment: '',
 }
 export const noOrderProducts: OrderProducts = {
   id: 0,
   options: '',
   order: 0,
   quantity: 0,
-  status: 'process', 
-  user: 0,
+  status: 'process',
   price: 0,
-  product:0
+  product: 0,
 }
 export const noBlog: BlogType = {
   id: 0,
@@ -51,5 +41,5 @@ export const noBlog: BlogType = {
   slug: '',
   status: 'draft',
   createdAt: newDate(),
-  updatedAd: newDate()
+  updatedAd: newDate(),
 }

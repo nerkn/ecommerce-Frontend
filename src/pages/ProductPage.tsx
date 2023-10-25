@@ -1,48 +1,41 @@
-import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from 'wouter'
 import CategoriesSiblings from 'src/components/blocks/CategoriesSiblings'
 import SubCategories from 'src/components/blocks/SubCategories'
 import { Stars } from 'src/components/stars'
 import { useCart } from 'src/hooks/useCart'
 import { useCategory } from 'src/hooks/useCategory'
 import { fetchCatIdsByProduct, fetchCatsByProduct } from 'src/libs/fetch/categories'
-import { Category, Product, ProductWithProperties } from 'src/types/site'
+import { ApiReturn, Category, Product, ProductWithProperties, ProductWithPropertiesEmpty } from 'src/types/db'
 
 export default function ProductPage() {
   const imageMain = useRef<HTMLImageElement>(null)
   let categoryStore = useCategory()
   let [imageBG, imageBGSet] = useState('#000')
+  let [product, productSet] = useState<ProductWithProperties>()
+  let [productCategories, productCategoriesSet] = useState<number[]>([])
   let { pageid: pageidOr } = useParams()
   let { add: cartAdd, includes: cartIncludes, remove: cartRemove } = useCart()
   let pageid = parseInt(pageidOr || '') || 0
-  let {
-    isLoading,
-    error,
-    data: product,
-  } = useQuery<ProductWithProperties>({
-    queryKey: ['product', pageid],
-    refetchOnWindowFocus: false,
-    queryFn: () =>
-      Promise.allSettled([
-        fetch('/api/v1/product?where=id,eq,' + pageid).then((r) => r.json()) as Promise<Product[]>,
-        fetch('/api/v1/images?where=item,eq,' + pageid + '|app,eq,product|bin,eq,img').then((r) => r.json()),
-        fetch('/api/v1/images?where=item,eq,' + pageid + '|app,eq,product|bin,eq,img').then((r) => r.json()),
-        fetchCatsByProduct(pageid),
-      ]).then((r) => {
-        let product = r[0].status == 'fulfilled' ? r[0].value?.data[0] : []
-        product.images = r[1].status == 'fulfilled' ? r[1].value.data : []
+  useEffect(() => {
+    Promise.allSettled([
+      fetch('/api/v1/product?where=id,eq,' + pageid).then((r) => r.json()) as Promise<
+        ApiReturn<ProductWithProperties[]>
+      >,
+      fetch('/api/v1/images?where=item,eq,' + pageid + '|app,eq,product|bin,eq,img').then((r) => r.json()),
+      fetch('/api/v1/images?where=item,eq,' + pageid + '|app,eq,product|bin,eq,img').then((r) => r.json()),
+      fetchCatsByProduct(pageid),
+    ]).then((r) => {
+      let product = r[0].status == 'fulfilled' ? r[0].value?.data[0] : { ...ProductWithPropertiesEmpty }
 
-        return product
-      }),
-  })
-  let { data: productCategories } = useQuery<number[]>({
-    queryKey: ['ProductCategories', product?.id || 0],
-    queryFn: () => fetchCatIdsByProduct(product?.id || 0),
-    enabled: !!product?.id,
-    refetchOnWindowFocus: false,
-  })
+      product.images = r[1].status == 'fulfilled' ? r[1].value.data : []
+
+      productSet(product)
+      fetchCatIdsByProduct(product?.id || 0).then((r) => productCategoriesSet(r))
+    })
+  }, [pageid])
+
   function ImageOnload(e: React.SyntheticEvent<HTMLImageElement>) {
     return
     /*
@@ -119,7 +112,13 @@ export default function ProductPage() {
               ) : (
                 <a
                   className="button  w-full rounded-md p-6 "
-                  onClick={() => cartAdd(product, product?.images[0].url, 1)}
+                  onClick={() =>
+                    cartAdd(
+                      product || { ...ProductWithPropertiesEmpty },
+                      product?.images.length ? product?.images[0].url : '',
+                      1,
+                    )
+                  }
                 >
                   Sepete ekle{' '}
                 </a>

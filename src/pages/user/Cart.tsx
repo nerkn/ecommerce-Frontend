@@ -4,15 +4,14 @@ import { Images, PaymentType, Product, UserAddress } from 'src/types/db'
 import { Addresses } from './Addresses'
 import { Payment } from './Payment'
 import { noAddress, noOrderProducts, noOrders } from 'src/types/resources'
-import { Button } from 'src/components/ui/button'
 import { fetchX } from 'src/libs/fetchx'
 import { OrderProducts, Orders } from 'src/types/db'
 import { address2str } from 'src/libs/convert/address2str'
-import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'wouter'
 import { useCart } from 'src/hooks/useCart'
 
-export default function CartPage({}) {
-  const navigate = useNavigate()
+export default function CartPage() {
+  const [location, navigate] = useLocation()
   const [products, productsSet] = useState<Product[]>([])
   const [images, imagesSet] = useState<Images[]>([])
   const [payment, paymentSet] = useState<PaymentType>({ paid: false, method: '' })
@@ -79,9 +78,9 @@ export default function CartPage({}) {
 
     return (
       <div className="SavePlace">
-        <Button onClick={SaveOrder} className="button" variant="secondary">
+        <a onClick={SaveOrder} className="button">
           Siparisi ver
-        </Button>
+        </a>
       </div>
     )
   }

@@ -1,26 +1,29 @@
-import { useEffect, useState } from "react"
-import { ApiReturn, Images, Product, ProductCategories } from "src/types/site"
-import Products from "./Products"
+import { homePageProductType } from 'src/types/db'
+import { Link } from 'wouter'
 
-
-export function ListOfCatBlock({catId, title}:{catId:number, title:string}){
-    const [homePageProducts, homePageProductsSet]   = useState<number[]>([])
-    const [products, productsSet]                   = useState<Product[]>([])
-    const [images,   imagesSet]                     = useState<Images[]>([])
-
-    useEffect(()=>{
-        fetch(`/api/v1/n2n?where=app,eq,product|bin,eq,category|t2,eq,${catId}&orderby desc`).
-            then(r=>r.json()).
-            then((r:ApiReturn<ProductCategories[]>)=>homePageProductsSet(r.error?[]:r.data.map(r=>r.t1)) )
-
-    },[]) 
-    return <div className="card">
-        <h2>{title}</h2>
-        {
-            homePageProducts.length?
-                <Products productIds={homePageProducts} parentSlug="cok-satanlar" />:
-                <></>
-        }
+export function ListOfCatBlock({ title, products }: { title: string; products: homePageProductType[] }) {
+  return (
+    <div className="card">
+      <h2>{title}</h2>
+      <div className="flex flex-wrap  gap-4">
+        {products?.map((sc) => (
+          <div className="product w-64" key={sc.id}>
+            <div className="relative  ">
+              <Link className="button" to={'/p/' + sc.id}>
+                <img src={sc.image} alt={'image of ' + sc.name} width="222px" height="333px" />
+                <div className="absolute right-4 mt-[-2rem] rotate-6 rounded-sm border border-red-100 bg-red-300 p-2 text-white shadow-md">
+                  ₺ {sc.price}
+                </div>
+                <div className="h-2">
+                  <div className="bg truncate hover:absolute hover:w-64 hover:text-clip hover:whitespace-normal">
+                    {sc.name}
+                  </div>
+                </div>
+              </Link>
             </div>
-
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }

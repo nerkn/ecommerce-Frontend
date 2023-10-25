@@ -315,7 +315,41 @@
     & .oneAddress .address{font-weight: bold;}
     & .oneAddress .detail{}
   }
-   
+}
+.BlocksProducts{
+  display: flex;
+  gap:1.8rem;
+  flex-wrap: wrap;
+  & .product{
+    width: 16rem;
+    height: 24rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding: 1em;
+    border: 1px solid hsl(var(--accent));
+    border-radius: 1rem;
+    & .priceTag{
+      position: absolute;
+      display: none;
+      right: 1rem;
+      bottom: 4rem;
+      width: 7rem;
+      text-align: center;
+      font-size: larger;
+      transform: rotate(6deg);
+      padding: .25rem;
+    }
+  }
+
+  & .product:hover{
+    background-color: hsl(var(--primary));
+    & .priceTag{
+      display: block;
+
+    }
+  }
 }
 .Payments{
   & dl{ 

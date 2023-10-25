@@ -1,5 +1,5 @@
 import { userStore } from 'src/libs/userLogin'
-import { FormEventds } from 'src/types/site'
+import { FormEventds } from 'src/types/db'
 
 export function LoginPlace() {
   const { user, login, logout, error } = userStore((s) => ({

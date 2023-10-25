@@ -1,5 +1,4 @@
 import { Rocket, Globe2, Wrench, Zap } from 'lucide-react'
-import { Button } from '../ui/button'
 import { t } from 'src/libs/utils'
 
 export const Hero = () => {
@@ -13,12 +12,11 @@ export const Hero = () => {
                 <h1 className="mb-6 text-3xl font-bold tracking-tighter text-transparent text-white sm:text-5xl xl:text-6xl/none">
                   {t('hero-title')}
                 </h1>
-                <Button className="font-semiboldn gap-3 py-6 text-lg" size={'lg'} asChild>
-                  <a href="https://github.com/Quilljou/vite-react-ts-tailwind-starter">
-                    <Zap />
-                    {t('get-started')}
-                  </a>
-                </Button>
+
+                <a href="/" className="font-semiboldn gap-3 py-6 text-lg">
+                  <Zap />
+                  {t('get-started')}
+                </a>
               </div>
               <div className="mx-auto w-full max-w-full space-y-4">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
