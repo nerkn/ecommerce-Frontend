@@ -97,6 +97,7 @@
 
   nav.MainMenu li .subMenu {
     background-color:  hsl(var(--card));
+    margin-left: -6rem;
   }
   nav.MainMenu li .subMenu .imgPlace{
     width: 200px;
@@ -330,6 +331,9 @@
     padding: 1em;
     border: 1px solid hsl(var(--accent));
     border-radius: 1rem;
+    & img{
+      max-height: 20rem;
+    }
     & .priceTag{
       position: absolute;
       display: none;
@@ -341,14 +345,20 @@
       transform: rotate(6deg);
       padding: .25rem;
     }
+    & .title{
+
+    }
   }
 
   & .product:hover{
     background-color: hsl(var(--primary));
     & .priceTag{
       display: block;
-
     }
+    & .title{
+      color:#666
+    }
+
   }
 }
 .Payments{

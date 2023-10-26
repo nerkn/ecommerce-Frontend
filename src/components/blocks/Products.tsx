@@ -32,10 +32,8 @@ export default function Products({ productIds, parentSlug }: { productIds: numbe
           {sc.images.length ? <img src={sc.images[0].url} /> : <div>Empty</div>}
 
           <div className="priceTag     text-white ">₺ {sc.price}</div>
-          <div className="h-2">
-            <div className="bg truncate rounded-sm hover:absolute hover:-ml-4 hover:-mt-8 hover:w-64 hover:text-clip hover:whitespace-normal hover:border hover:bg-white hover:p-4">
-              {sc.name}
-            </div>
+          <div className="title bg  truncate rounded-sm hover:absolute hover:bottom-0 hover:-ml-4 hover:w-64 hover:text-clip hover:whitespace-normal hover:border hover:bg-white hover:p-4">
+            {sc.name}
           </div>
         </Link>
       ))}
