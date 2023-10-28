@@ -1,4 +1,4 @@
-import { Facebook, Github, Instagram, Twitter } from 'lucide-react'
+import { Facebook, Github, Instagram, LucideAlarmClockOff, LucideLampDesk, Twitter } from 'lucide-react'
 
 function FooterLink({ href, text }: { href: string; text: string }) {
   return (
@@ -12,12 +12,12 @@ function FooterLink({ href, text }: { href: string; text: string }) {
 
 export function Footer() {
   return (
-    <footer className="bg-white py-4 dark:bg-gray-800 sm:py-6">
+    <footer className="bg-white p-2 py-4 dark:bg-gray-800 sm:py-6">
       <div className="">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <a className="flex items-center">
-              <span className="material-symbols-outlined">drag_click</span>
+              <LucideLampDesk scale={2} />
               <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Sitem</span>
             </a>
           </div>
