@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'wouter'
+import { Link, useLocation } from 'wouter'
 import { ApiReturn, Images, Product, ProductWithProperties } from 'src/types/db'
+
+import {onClickViewTX} from '../../libs/utils'
 
 export default function Products({ productIds, parentSlug }: { productIds: number[]; parentSlug: string }) {
   const [products, productsSet] = useState<ProductWithProperties[]>([])
+  const [location, navigate] = useLocation()
 
   useEffect(() => {
     console.log(' (!productIds || !productIds.length', !productIds, !productIds.length)
@@ -28,7 +31,7 @@ export default function Products({ productIds, parentSlug }: { productIds: numbe
   return (
     <div className="BlocksProducts">
       {products?.map((sc) => (
-        <Link className="product  h-96" to={'/p/' + (parentSlug ? `${parentSlug}/` : '') + sc.id}>
+        <Link className="product  h-96" to={'/p/' + (parentSlug ? `${parentSlug}/` : '') + sc.id}onClick={onClickViewTX('img', 'productImg', navigate)} >
           {sc.images.length ? <img src={sc.images[0].url} /> : <div>Empty</div>}
 
           <div className="priceTag     text-white ">₺ {sc.price}</div>

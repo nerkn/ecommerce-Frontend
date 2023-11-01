@@ -75,7 +75,7 @@ export default function ProductPage() {
           <div className="lg:w-[500px]">
             <img
               alt={product?.name + 'Resmi'}
-              className="w-full max-w-lg object-cover object-center lg:aspect-[1/1] lg:w-[800px] "
+              className="MainImage w-full max-w-lg object-cover object-center lg:aspect-[1/1] lg:w-[800px] min-h-[800px]" 
               src={product?.images[0].url}
               ref={imageMain}
               onLoad={(e) => ImageOnload(e)}
